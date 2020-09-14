@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'manrope_extrabold';
+    src: url('manrope_extrabold.eot');
+    src: url('manrope_extrabold.eot') format('embedded-opentype'),
+         url('manrope_extrabold.woff2') format('woff2'),
+         url('manrope_extrabold.woff') format('woff'),
+         url('manrope_extrabold.ttf') format('truetype'),
+         url('manrope_extrabold.svg#manrope_extrabold') format('svg');
+}

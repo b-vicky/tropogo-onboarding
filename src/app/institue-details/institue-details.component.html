@@ -1,8 +1,98 @@
 <div fxLayout="row">
-  <div fxFlex="50">
-    <h1>hello</h1>
+  <div fxFlex.gt-md="50" fxFlex.lt-md="100">
+    <div class="instute-detail-title">
+      <p class="title-style">Add Some details of your training institute</p>
+    </div>
+    <div class="institute-form-style">
+      <form [formGroup]="institueDetailsForm" fxLayout="column">
+
+        <div class="logo-field-style" fxLayout="column">
+          <span [ngStyle]="changeErrorStyle()" class="fields-tag-style">INSTITUTE LOGO</span>
+          <div class="logo-upload-button-style" fxLayout="row">
+            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 61px; width:63.2px">
+            <label for="logo-file-upload" class="custom-file-upload">
+              {{logoButtonValue}}
+            </label>
+            <input hidden id="logo-file-upload" formControlName="file" type="file" (change)="onLogoUpload($event)"
+              required>
+          </div>
+        </div>
+
+        <div class="normal-field-style" fxLayout="column">
+          <span [ngStyle]="changeErrorStyle()" class="fields-tag-style">NAME OF INSTITUTE</span>
+          <input class="text-field-style" formControlName="name" id="name" type="text" required>
+        </div>
+
+        <div class="normal-field-style" fxLayout="column">
+          <p fxLayout="row wrap" fxLayoutGap.xs="50px" fxLayoutGap.gt-sm="180px">
+            <span>
+              <span class="fields-tag-style">INSTITUTE BROCHURE</span>
+              <span class="option-tag">(optional)</span>
+            </span>
+            <label fxLayout='row' for="broucher-file-upload" class="custom-file-cloud-upload"><img
+                src="../../assets/icons/ic_upload.png"><span style="margin-left: 4px">Upload</span>
+            </label>
+            <input hidden id="broucher-file-upload" formControlName="brouchers" type="file"
+              (change)="onBroucherUpload($event)" multiple>
+          </p>
+
+          <div class="filestyle" *ngFor="let filesB of broucherFiles" fxLayout.gt-xs=row fxLayoutGap.xs=50px
+            fxLayoutGap.sm=100px fxLayoutGap.gt-sm=200px>
+            <div class="filename-style">{{filesB.name}}</div>
+            <div class="delete-button-style"><img src="../../assets/icons/ic_delete.png"></div>
+          </div>
+        </div>
+
+        <div class="normal-field-style" fxLayout="column">
+          <p fxLayout="row wrap" fxLayoutGap.xs="50px" fxLayoutGap.gt-sm="210px">
+            <span>
+              <span class="fields-tag-style">CERTIFICATIONS</span>
+              <span class="option-tag">(optional)</span>
+            </span>
+            <label fxLayout='row' for="certificate-file-upload" class="custom-file-cloud-upload"><img
+                src="../../assets/icons/ic_upload.png"><span style="margin-left: 4px">Upload</span>
+            </label>
+            <input hidden id="certificate-file-upload" formControlName="certificates" type="file"
+              (change)="onCertificateUpload($event)" multiple>
+          </p>
+          <div *ngFor="let filesC of certificateFiles" fxLayout.gt-sm="row wrap" fxLayoutGap.xs=50px
+            fxLayoutGap.sm=100px fxLayoutGap.gt-sm=200px>
+            <div class="filename-style">{{filesC.name}}</div>
+            <div><img src="../../assets/icons/ic_delete.png"></div>
+          </div>
+        </div>
+
+        <div class="normal-field-style" fxLayout="column">
+          <p fxLayout="row wrap" fxLayoutGap.xs="50px" fxLayoutGap.gt-sm="180px">
+            <span [ngStyle]="changeErrorStyle()" class="fields-tag-style">INSTITUTE / COURSE GALLERY</span>
+            <label fxLayout='row' for="gallery-file-upload" class="custom-file-cloud-upload"><img
+                src="../../assets/icons/ic_upload.png"><span style="margin-left: 4px">Upload</span>
+            </label>
+            <input hidden id="gallery-file-upload" formControlName="courseGalleryFile" type="file"
+              (change)="onGalleryUpload($event)" multiple required>
+          </p>
+          <div *ngFor="let filesG of galleryFiles" fxLayout.gt-sm="row wrap" fxLayoutGap.xs=50px fxLayoutGap.sm=100px
+            fxLayoutGap.gt-sm=200px>
+            <div class="filename-style">{{filesG.name}}</div>
+            <div><img src="../../assets/icons/ic_delete.png"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="submit-tab-style">
+      <div class="error-tab-style" *ngIf="isError">
+        <div class="error-message-style">
+          <img src="../../assets/icons/ic_info.png">Fill the required information to proceed
+        </div>
+      </div>
+      <mat-card>
+        <mat-card-content fxLayoutAlign=end>
+          <button mat-flat-button color="primary" (click)="onNextClick()">Next</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <div class="right-background-style" fxFlex="50" fxHide.xs="true" fxHide.sm="true">
+  <div class="right-background-style" fxFlex="50" fxHide.xs="true">
     <img class="course-image-style" src="../../assets/images/bg_1.png">
   </div>
 </div>
